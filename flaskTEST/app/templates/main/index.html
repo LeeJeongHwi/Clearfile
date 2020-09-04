@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask TEST</title>
+</head>
+<body>
+    <h1>This is Test Page</h1>
+    <h2>And this is Python data insert : {{testDataHtml}}</h2>
+
+    <input type="button" value="INSERT test" onclick="location.href='/test/insert'">
+    <input type="button" value="SELECT test" onclick="location.href='/test/select'">
+    <input type="button" value="UPDATE test" onclick="location.href='/test/update'">
+    <br><br><br>
+    <div>
+        INSERT REULST : {{result}}
+    </div>
+    <div>
+        SELECT RESULT idx : {{resultData.idx}}<br>
+        SELECT RESULT test : {{resultData.test}}
+    </div>
+    <br>
+    <div>
+        UPDATE RESULT idx : {{resultUpdate.idx}}<br>
+        UPDATE RESULT test : {{resultUpdate.test}}
+    </div>
+    <br>
+</body>
+</html>
