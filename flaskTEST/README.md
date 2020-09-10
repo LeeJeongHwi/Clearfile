@@ -24,3 +24,6 @@ Flask에서 정의되어 있는 디렉토리 구조이기 때문에 따라야한
   * ```render_template()``` 를 수행할 시 templates 폴더에 있는 html 파일들을 보여준다.
 * project_name/static - html 파일 내에 이미지,js,css 링크를 참조하는 파일들
 * flask 메인 py 파일은 project_name/ 에 위치해야한다.
+
+### GET - POST 방식
+
