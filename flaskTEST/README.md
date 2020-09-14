@@ -128,3 +128,54 @@ Flask에서 정의되어 있는 디렉토리 구조이기 때문에 따라야한
   * 웹서버가 동적으로 데이터를 반환하도록 하기위한 프레임워크
   * Flask, Django, node.js , rails.....
 
+
+
+### REST API
+
+#### HTTP(Hypertext Transfer Protocol)
+
+* Client --> HTTP Request --> Server
+* Server --> HTTP Response --> Client
+
+* Client 에서 요청 , Server에서 응답
+
+* ```python
+  GET / HTTP/1.1
+  GET : HTTP Method
+  /   : Path (routing 경로)
+  HTTP/1.1 : HTTP 버전
+  Host : ..
+  Connection : Keep alive # 한번 연결해 놓고 계속 사용
+  ```
+
+* HTTP는 1회성 (연결 과정작업을 계속 해야함)
+
+  * 한번 연결 해놓고 연결 과정 작업을 계속 굳이 하지말아라!
+    * Connection
+
+* GET
+
+  * 정보를 가져오는 메소드
+
+* 입력창에 데이터를 넣고, Submit을 하고 그거에 대한 일종의 **결과값**을 서버에서 return 받을 때, 이때 REST API방식을 사용한다 라고 함!
+
+#### REST
+
+* REPressentational State Transfer
+* 자원의 표현에 의한 상태 전달
+* HTTP URI를 통해 자원을 명시하고, HTTP Method를 통해 자원에 대한 CRUD Opertaion 적용
+  * Create : POST
+  * Read : GET
+  * Update : PUT
+  * Delete : DELETE
+
+#### REST API
+
+* REST 기반으로 서비스 API 를 구현한 것
+* 마이크로 서비스, OpenAPI 등에서 많이 사용
+
+#### Flask with REST API
+
+* 특정한 URI를 요청 --> JSON 형식으로 데이터를 반환
+* 
+
