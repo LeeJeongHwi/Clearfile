@@ -177,5 +177,42 @@ Flask에서 정의되어 있는 디렉토리 구조이기 때문에 따라야한
 #### Flask with REST API
 
 * 특정한 URI를 요청 --> JSON 형식으로 데이터를 반환
-* 
+
+* 웹주소(URI) 요청에 대한 응답(Response)를 JSON 형식으로 작성
+
+* Flask에서는 Dict(사전) 데이터를 응답 데이터로 만들고, 이를 jsonify() 메서드를 활용해서 JSON 응답 데이터를 만들 수 있음
+
+  * JSON Format
+
+    ```json
+    {
+        "name":"LEEJEONGHWI",
+        "age" :24,
+        "use_lang" : [
+         	{
+                "Python":5.0 //능력치
+                "C++" : 3.5
+            }   
+        ]
+    }
+    ```
+
+* jsonify
+
+  * Json을 프론트 엔드로 보낸다.
+
+* request
+
+  * 파라미터 값을 받기 위해 사용
+
+  * `username = request.args.get('user_name')` : 'get' 방식으로 요청된 파라미터는 주소에 붙어져서 전송함
+
+  * URL?파라미터이름=파라미터값
+    `http://localhost:8080/login?user_name=jeonghwi`
+
+    여러개의 파라미터
+
+    `http://localhost:8080/login?user_name=jeonghwi&pw=111&email=wjdgnl97@gmail.com`
+
+  * 
 
