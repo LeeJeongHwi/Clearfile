@@ -1,0 +1,76 @@
+# Flask Error 처리
+
+### Errorhandler
+
+```python
+@app.errorhandler(404) #status code
+def page_not_found(error):
+    return "<h1>404 error</h1>",404
+```
+
+* status code로 에러를 처리함
+
+
+
+### Logging
+
+* 보통 서버는 24시간 동작하기 때문에 문제 발생시 원인 파악을 위해 로깅 기능 사용
+* 사용자 모니터링, 해킹 확인..등등
+* Docker 사용을 하면 오류 발생시 재실행
+
+>DEBUG > INFO > WARNING > ERROR > Critical
+
+```python
+import logging
+
+#어느 로그 까찌 남길 것인지를 Level로 설정
+logging.basicConfig(filename='test.log',level=logging.DEBUG)
+
+logging.debug("debug")
+logging.info("info")
+logging.warning("warning")
+logging.error("error")
+logging.critical("Critical")
+```
+
+
+
+
+
+
+
+# 데코레이터
+
+* `before_first_request` : Flask가 구동되고 처음 HTTP request가 들어왔을 때 실행되는 Decorator
+* `before_request`: Request가 들어올 때마다 요청을 처리하기 전에 실행
+  * `before_first_request , before_request`는 인자 전달 X
+* `after_request`: Request 처리가 끝나고 브라우저에 응답하기 전에 실행
+  * response를 리턴
+
+```python
+app = Flask(__name__)
+
+@app.before_first_request
+def before_first_request():
+    print("Before first request")
+
+@app.before_request
+def before_request():
+    print("Before Request")
+
+@app.after_request
+def after_request(response):
+    print("After Request")
+    return response
+
+>>
+Before First Request!
+Before Request!
+After Request!
+..
+
+Before Request!
+(~~~)
+After Request!
+```
+
