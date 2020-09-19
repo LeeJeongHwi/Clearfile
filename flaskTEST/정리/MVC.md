@@ -1,11 +1,12 @@
-
-
 ### MVP 버전
 
 * 최소한의 기능을 구현한 제품
 * 고객의 피드백을 받아서, 기능을 점차적으로 개선
 
 # MVC 패턴
+
+![image-20200918145355667](./MVC 패턴 구동)
+
 
 * Model - View - Controller 아키텍쳐
   * Model : 응용 프로그램의 데이터 (주로 DB)
@@ -46,4 +47,18 @@
     def blog():
         return "blueprint test login--..."
     ```
+
+
+
+### MVC Pattern 구현
+
+* 순서는 다음과 같다.
+
+  ![Flask – gertjanvanhethofblog](./mvc)
+  
+
+  * View 에서 Controller 로 Request로 전달
+  * Controller에서 Routing이 일어난다.
+    * GET, POST인지를 파악하고 DB에서 데이터를 가져온다
+  * Model 에서는 
 
