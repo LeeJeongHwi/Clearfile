@@ -38,3 +38,93 @@
   * 신속한 배포
   * 계층 및 이미지 버전 제어
 
+> 우리는 DB(Maria or MySQL) 컨테이너, Web Server 컨테이너, Deap Learning 컨테이너로 구성을 할 계획이다.
+
+
+
+### Docker Terms
+
+* Contrainer
+  * 논리적으로 쪼개져있는 영역
+  * 컨테이너는 "하나의 프로세스" 라고 생각하면 된다.
+  * VM과 다른 점
+    * VM은 별도의 OS가 된다 (PC 1개가 2개로 쪼개지는 것)
+    * Docker는 1개의 PC에서 여러개의 프로세스로 나눠서 쓰는것
+* Image
+  * 구성된 프로세스
+  * Image 한개가 container 한개다 라고 생각하면됨
+  * 다른 서버에서 쓰고싶으면 image로 복사해놓는다.
+  * container를 바탕으로 해서 떠놓은 것
+  * Image Build(Make) : Dockerfile
+    * build 해 놓은 것을 다른 서버에 image를 올려서 사용한다는 뜻?
+    * 일일히 설치 할 필요없이!
+  * Image ship(share)
+
+* Pull
+  * image를 받는 것
+
+### Docker Principle
+
+* Namespace
+  * PID, UID .. 등등 분리
+
+* docker0 NIC (Network interface controller)
+  * Network도 분리가능
+
+
+
+### Portainer
+
+* docker의 이미지,컨테이너,네트워크 등을 쉽게 관리할 수 있게 도와주는 GUI Web 서비스
+
+
+
+## 명령어
+
+* docker ps
+  * 실행 중에 있는 Container
+* docker ps -a
+  * 실행 내역?
+
+* docker system df
+  * 디스크 사용량을 나타내는 것
+* docker pull [image]
+  * 이미지 다운로드
+* docker image ls
+  * image 목록
+* docker container run --name [name] -d -p [명령]
+  * -d : detach (background으로 돌리겠다)
+  * -p : port 설정
+  * (nginx 는 기본적으로 80 포트로 설정되어있따.)
+  * -it : CLI 형태로 구동 가능?
+  * 처음 Container를 올릴 때 사용
+  * ctrl+PQ --> detach
+* docker start [name]
+  * 전에 생성된 컨테이너 실행
+  * restart 는 강제 재실행
+* docker stop [name]
+  * 컨테이너 중지
+* docker container attach [name]
+  * 실행 중인 도커 컨테이너 안으로 들어감
+* docker rm [name]
+  * 컨테이너 삭제
+* docker exec ...
+  * 하나의 명령만 실행할 때 (컨테이너가 떠있는 경우에만!)
+* docker rename [name] [ch_name]
+  * 이름 변경
+* docker cp [container-name]:[path] [client-path]
+  docker cp [client-file] [container-name]:[path]
+  * file 복사 (컨테이너 -> 로컬 , 로컬 -> 컨테이너)  
+* docker run -v [local-path]:[container-path]
+  * 디렉토리 공유
+
+
+
+## Docker Compose
+
+* 하나의 이미지엔 하나의 앱만 넣고 여러 컨테이너를 조합하여 서비스를 구축하는 방법이 좋다
+* 여러개의 컨테이너를 실행 시키는 패턴
+  * Docker-Compose 이용
+
+
+
