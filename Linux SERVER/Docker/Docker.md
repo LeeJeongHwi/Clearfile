@@ -1,7 +1,5 @@
 # Docker
 
-
-
 ## Docker?
 
 * Linux 컨테이너를 만들고 사용할 수 있도록 하는 컨테이너화 기술
@@ -63,6 +61,10 @@
 * Pull
   * image를 받는 것
 
+> Image는 서비스 운영에 필요한 서버 프로그램, 소스 코드, 컴파일 된 실행 파일을 **묶은 형태**
+>
+> Container는 그 Image는 실행 시킨 **프로세스** 라고 생각하면 편하다
+
 ### Docker Principle
 
 * Namespace
@@ -85,7 +87,6 @@
   * 실행 중에 있는 Container
 * docker ps -a
   * 실행 내역?
-
 * docker system df
   * 디스크 사용량을 나타내는 것
 * docker pull [image]
@@ -117,14 +118,71 @@
   * file 복사 (컨테이너 -> 로컬 , 로컬 -> 컨테이너)  
 * docker run -v [local-path]:[container-path]
   * 디렉토리 공유
+* docker commit [Container] [ImageName]:[tag]
+  * container to Image (작업중인 container를 image로 생성)
+  * 주의할 점은 볼륨을 host와 공유하지 않으면 commit을 해도 변화된 데이터베이스는 저장되지 않는다.
+    * run 시킬 때 -v로 공유볼륨을 지정해줘야함
+
+>* mariaDB server 의 경우
+>
+>`-v [local-path]:/var/lib/mysql ` // docker-hub mariaDB official 에 올라온 path
+
+* docker build -t -f ...
+  * Dockerfile을 실행시키기 위한 명령어
+  * -t 이미지 파일에 붙일 태그생성
+  * -f 참조할 dockerfile 명
+  * 뒤에 꼭 "."를 붙이자..! (도커파일이 현재 실행되고 있는 디렉토리에 있다는 뜻!)
+
+
+
+## Dockerfile
+
+* 이미지를 만드는데 사용하는 파일
+
+#### 명령어
+
+* FROM
+  * 베이스이미지 지정
+* MAINTAINER
+  * Dockerfile 관리자 정보
+* COPY
+  * 파일이나 디렉토리를 이미지로 복사 (소스를 복사하는데 사용)
+  * COPY [localPath] [Container Path]
+* ADD
+  * COPY와 비슷한 일을 함
+* RUN
+  * 명령어를 그대로 실행한다. 내부적으로 /bin/sh -c 뒤에 명령어를 실행하는 방식
+* CMD
+  * 도커 컨테이너가 실행되었을 때 명령어를 정의
+  * 빌드할 때에는 실행 X
+  * 좀 더 공부가 필요함
+* WORKDIR
+  * RUN, CMD, ADD, COPY가 이루어질 디렉토리 설정
+  * 명령어는 한 줄 한 줄마다 초기화되기 때문임
+* EXPOSE
+  * 컨테이너가 실행되었을 때 요청을 기다리고 있는(Listen) 포트 , 여러개의 포트 지정
+* VOLUME
+  * 컨테이너 외부에 파일 시스템을 마운트 할 때 사용
+  * `VOLUMNE [Container Path]`
+  * `sudo docker run -v [local path]:[container path]`
+* ENV
+  * 환경변수 설정 
+  * `ENV [환경변수] [값]`
+
+> 도커파일 작성하는 것은 꽤 어려움..
 
 
 
 ## Docker Compose
 
-* 하나의 이미지엔 하나의 앱만 넣고 여러 컨테이너를 조합하여 서비스를 구축하는 방법이 좋다
-* 여러개의 컨테이너를 실행 시키는 패턴
-  * Docker-Compose 이용
+- 하나의 이미지엔 하나의 앱만 넣고 여러 컨테이너를 조합하여 서비스를 구축하는 방법이 좋다
+- 여러개의 컨테이너를 실행 시키는 패턴
+  - Docker-Compose 이용
+- 방향 (구상도)
 
+<img src='./figure/container 구상도'>
 
-
+- 예상 구상도는 다음과 같다
+  - DB Server , Web Server (Front,Back) , ML/DL Server
+  - 각각의 컨테이너에서 작업을 하고 Docker-Compose로 3개를 동시에 실행시키는 것
+  - 따라서 DB를 교체시에 DB Container만 수정하면 되도록 구현하는 것

@@ -20,4 +20,4 @@ class Database():
         row = self.cursor.fetchall()
         return row
     def commit(self):
-        self.db.commit()
+        self.db.commit()s
