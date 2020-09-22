@@ -171,17 +171,8 @@
 
 > 도커파일 작성하는 것은 꽤 어려움..
 
-
-
 ## Docker Compose
 
-<<<<<<< HEAD
-- 하나의 이미지엔 하나의 앱만 넣고 여러 컨테이너를 조합하여 서비스를 구축하는 방법이 좋다
-- 여러개의 컨테이너를 실행 시키는 패턴
-  
-  - Docker-Compose 이용
-- 방향 (구상도)
-=======
 * 하나의 이미지엔 하나의 앱만 넣고 여러 컨테이너를 조합하여 서비스를 구축하는 방법이 좋다
 * 여러개의 컨테이너를 실행 시키는 패턴
   * Docker-Compose 이용
@@ -197,13 +188,3 @@
 
   * 따라서 DB를 교체시에 DB Container만 수정하면 되도록 구현하는 것
 
-    
-
->>>>>>> 3843ccfec800f89fc820069941bf0f9a2df15b6e
-
-<img src='./figure/container 구상도'>
-
-- 예상 구상도는 다음과 같다
-  - DB Server , Web Server (Front,Back) , ML/DL Server
-  - 각각의 컨테이너에서 작업을 하고 Docker-Compose로 3개를 동시에 실행시키는 것
-  - 따라서 DB를 교체시에 DB Container만 수정하면 되도록 구현하는 것
