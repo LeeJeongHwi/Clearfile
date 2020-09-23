@@ -84,14 +84,19 @@
 ## 명령어
 
 * docker ps
+  
   * 실행 중에 있는 Container
 * docker ps -a
+  
   * 실행 내역?
 * docker system df
+  
   * 디스크 사용량을 나타내는 것
 * docker pull [image]
+  
   * 이미지 다운로드
 * docker image ls
+  
   * image 목록
 * docker container run --name [name] -d -p [명령]
   * -d : detach (background으로 돌리겠다)
@@ -100,23 +105,32 @@
   * -it : CLI 형태로 구동 가능?
   * 처음 Container를 올릴 때 사용
   * ctrl+PQ --> detach
+  
+  > links 옵션은 
 * docker start [name]
   * 전에 생성된 컨테이너 실행
   * restart 는 강제 재실행
 * docker stop [name]
+  
   * 컨테이너 중지
 * docker container attach [name]
+  
   * 실행 중인 도커 컨테이너 안으로 들어감
 * docker rm [name]
+  
   * 컨테이너 삭제
 * docker exec ...
+  
   * 하나의 명령만 실행할 때 (컨테이너가 떠있는 경우에만!)
 * docker rename [name] [ch_name]
+  
   * 이름 변경
 * docker cp [container-name]:[path] [client-path]
   docker cp [client-file] [container-name]:[path]
+  
   * file 복사 (컨테이너 -> 로컬 , 로컬 -> 컨테이너)  
 * docker run -v [local-path]:[container-path]
+  
   * 디렉토리 공유
 * docker commit [Container] [ImageName]:[tag]
   * container to Image (작업중인 container를 image로 생성)
@@ -133,7 +147,7 @@
   * -f 참조할 dockerfile 명
   * 뒤에 꼭 "."를 붙이자..! (도커파일이 현재 실행되고 있는 디렉토리에 있다는 뜻!)
 
-
+>만약 run 중에 까먹고 -v -p 등 옵션을 설정해주지 않고 다른걸 이미 설치해버린 상태라면 commit 후에 다시 run 할 때 설정해주면 된다.
 
 ## Dockerfile
 
@@ -178,7 +192,7 @@
   * Docker-Compose 이용
 * 방향
 
-<img src="./figure/container 구상도" alt="image-20200921225749678" style="zoom:50%;" />
+![image-20200923171717864](./figure/container 구상도)
 
 * 예상 구상도는 다음과 같다
 
