@@ -5,7 +5,7 @@
   * Docker-Compose 이용
 * 방향
 
-![image-20200924195531319](./figure/container 구상도)
+![image-20200924195531319](./figure/containers)
 
 * 예상 구상도는 다음과 같다
 
