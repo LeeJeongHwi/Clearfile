@@ -136,10 +136,17 @@
   * container to Image (작업중인 container를 image로 생성)
   * 주의할 점은 볼륨을 host와 공유하지 않으면 commit을 해도 변화된 데이터베이스는 저장되지 않는다.
     * run 시킬 때 -v로 공유볼륨을 지정해줘야함
+  * 가장 더 주의 할 점
+    * **Base Image와 별도로 추가 된 부분만 관리된다.**
+    * **기존의 base image를 share 하면서, 추가된 내용을 별.도.로 관리한다는 의미**
+    * 즉 기존 이미지에 쌓는 다는 개념이라고 생각하면됨
+    * 그래서 os+python+(package) 등을 하나의 image로 만드려면 **아예 Dockerfile을 새로 작성해서 새로운 이미지를 빌드하는게 좋음**
 
 >* mariaDB server 의 경우
 >
 >`-v [local-path]:/var/lib/mysql ` // docker-hub mariaDB official 에 올라온 path
+
+
 
 * docker build -t -f ...
   * Dockerfile을 실행시키기 위한 명령어
