@@ -10,6 +10,14 @@
 
 # :calendar: 개발일지
 
+## 2020.09.29
+
+* Container (SQL DB, Portainer) 에 개별적으로 접근 가능하도록 port fowarding 설정
+  * `mysql -h [ip] -u root -p` : Server컴퓨터 내 --> DB container
+
+* FlaskTEST update
+  * MVC패턴 기본적인 틀 작성
+
 ## 2020.09.25
 
 * 이제부터 Flask 70, Docker 30에 힘을 쓰자
