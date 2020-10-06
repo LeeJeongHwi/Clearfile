@@ -13,7 +13,7 @@ os.environ['OAUTHLIB_INSECURE_TRANSPPORT'] = '1'
 #static_url_path : static 주소
 app = Flask(__name__,static_url_path='/static')
 CORS(app) # 리액트와 연동
-app.secure_key = 'Lee_Server' # 테스트를 위한 고정값
+app.secret_key = 'Lee_Server3' # 테스트를 위한 고정값
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -21,7 +21,7 @@ login_manager.session_protection = 'strong'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id) # User class
+    return user_mgmt.User.get(user_id) # User class
 
 @login_manager.unauthorized_handler
 # 로그인 안된 사용자가 로그인이 된 사용자만 접근할 수 있는 Request를 요청하는 경우

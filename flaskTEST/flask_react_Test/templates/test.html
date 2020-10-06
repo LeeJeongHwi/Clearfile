@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST PAGE</title>
+</head>
+<body>
+    <h1>This is TEST PAGE</h1>
+    {% if map_id != null %}
+    {{ data }}
+    {% else %}
+    <form action = "/load_map" method="POST">
+        불러올 맵 번호 : <input type="text" name="map_id"><br>
+        <button type="submit">불러오기</button>
+    </form>
+    {% endif %}
+</body>
+</html>

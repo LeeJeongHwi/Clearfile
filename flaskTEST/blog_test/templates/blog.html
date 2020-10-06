@@ -56,8 +56,13 @@
     <div class="col-md-12 px-0">
       <h1 class="display-4 font-weight-bold">이정휘 테스트 페이지</h1>
       <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+      <p class ="lead mb-2">
+      {% if user_email != null %}
+      {{ user_email }} 이메일 주소로 구독 중 입니다. &nbsp; &nbsp;
+      <a class="btn btn-light" href="/blog/logout" role="button">구독 취소</a>
+      {% else %}
       <form class="form-inline" method="POST" action="/blog/set_email">
-        <div class="form-row">
+        <div class="form-row">    
           <label for="staticEmail2" class="sr-only">Email</label>
           <input type="email" class="form-control" value="email@example.com" name="user_email">
         </div>
@@ -65,6 +70,8 @@
           <button type="submit" class="btn btn-primary">구독</button>
         </div>
       </form>
+      {% endif %}
+      </p>
     </div>
   </div>
 
