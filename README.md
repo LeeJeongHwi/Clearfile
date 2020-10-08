@@ -10,6 +10,17 @@
 
 # :calendar: 개발일지
 
+## 2020.10.07
+
+* View(React) Request --> (Contoller+model) Flask --> DB --> (Controller+model) Flask --> View (React) Response
+
+![image-20201008094543016](./Figure/1007 Result)
+
+* 할 일
+  * Flask Main화면 라우팅
+    * 라우팅 분기점 설계
+  * React 화면 구성 설계
+
 ## 2020.09.29
 
 * Container (SQL DB, Portainer) 에 개별적으로 접근 가능하도록 port fowarding 설정
