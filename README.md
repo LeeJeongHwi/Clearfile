@@ -14,7 +14,7 @@
 
 * View(React) Request --> (Contoller+model) Flask --> DB --> (Controller+model) Flask --> View (React) Response
 
-![image-20201008094543016](./Figure/1007 Result)
+![image-20201008094543016](./Figure/1007_Result)
 
 * 할 일
   * Flask Main화면 라우팅
