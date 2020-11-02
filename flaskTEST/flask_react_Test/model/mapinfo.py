@@ -14,7 +14,7 @@ class mapinfo():
         sql = "SELECT * FROM map_info WHERE id = %d;" %(id)
         db_cursor.execute(sql)
         datas = db_cursor.fetchone()
+        print(datas)
         if not datas:
             return None
         return datas
-    
