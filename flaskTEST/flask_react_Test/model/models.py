@@ -6,7 +6,7 @@ MYSQL_CONN = mysql.connect(
     port=3306,
     user='root',
     passwd='rjdnf88as',
-    db='test',
+    db='testdb',
     charset='utf8'
 )
 def conn_mysqldb():
