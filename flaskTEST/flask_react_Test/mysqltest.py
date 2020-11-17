@@ -13,3 +13,11 @@ def conn_mysqldb():
     if not MYSQL_CONN.open:
         MYSQL_CONN.ping(reconnect=True)
     return MYSQL_CONN
+
+conn = conn_mysqldb()
+cursor = conn.cursor()
+
+cursor.execute("select * from predictTBL")
+row = cursor.fetchall()
+for i in row:
+    print(i)
