@@ -1,11 +1,11 @@
 import pymysql as mysql
 
-MYSQL_HOST = '117.16.123.11'
+MYSQL_HOST = ''
 MYSQL_CONN = mysql.connect(
     host=MYSQL_HOST,
     port=3306,
     user='root',
-    passwd='dkimsmu',
+    passwd='',
     db='powerDB_hour1',
     charset='utf8'
 )
