@@ -10,8 +10,7 @@ def load_map():
         print(data)
         if data == None:
             print(request.headers)
-        map_number = data['map_id']
-        map_info = mapinfo.get(map_number)
+        map_info = mapinfo.get()
         return jsonify(map_info)
 
 @main_view.route("/load_measure",methods=['POST',"GET"])

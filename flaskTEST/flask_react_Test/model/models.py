@@ -6,7 +6,7 @@ MYSQL_CONN = mysql.connect(
     port=3306,
     user='root',
     passwd='dkimsmu',
-    db='testDB',
+    db='powerDB_hour1',
     charset='utf8'
 )
 def conn_mysqldb():
