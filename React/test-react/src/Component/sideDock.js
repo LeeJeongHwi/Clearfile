@@ -2,7 +2,7 @@ import React ,{Component, useState} from "react";
 import Dock from "react-dock";
 import {X} from "react-bootstrap-icons"
 
-class SideBarTest extends Component{
+class SideDock extends Component{
     state = {
         positions: "left",
         dimModes : "none",
@@ -30,7 +30,7 @@ class SideBarTest extends Component{
     render(){       
         return(
             <div>
-                <button onClick={this.onClickVisible}>보이기</button>
+                <button onClick={this.onClickVisible}>visible</button>
                 <Dock 
                   position={this.state.positions}
                   dimMode={this.state.dimModes}
@@ -47,4 +47,4 @@ class SideBarTest extends Component{
         )
     }
 }
-export default SideBarTest;
+export default SideDock;

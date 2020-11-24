@@ -16,10 +16,9 @@ def load_map():
 @main_view.route("/load_measure",methods=['POST',"GET"])
 def load_info():
     if request.method == "GET":
-        data = request.args.get("map_id")
+        data = request.args.get("id")
         print("param : ",data)
         if data == None:
             print(request.headers)
         meausre_info = meausreInfo.get(data)
         return jsonify(meausre_info)
-        

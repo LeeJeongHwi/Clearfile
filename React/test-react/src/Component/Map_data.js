@@ -1,7 +1,7 @@
 /*global kakao */
 import React ,{Component} from "react";
 import axios from 'axios';
-
+import SideDock from "./SideDock"
 const { kakao } = window;
 class Map_data extends Component{
     constructor(props){
@@ -37,8 +37,12 @@ class Map_data extends Component{
         marker_List.map(
             data => {
                 const marker = new kakao.maps.Marker({
+                    title : data['id'],
                     map : this.state.map,
                     position: new kakao.maps.LatLng(data["lat"],data["long"])
+                })
+                kakao.maps.event.addListener(marker,"click",function(){
+                    console.log("Marker Click "+marker.getTitle())
                 })
                 marker.setMap(this.state.map)
                 console.log("Marker Setting : "+data["name"]+" "+data["lat"]+" "+data["long"])
@@ -55,7 +59,7 @@ class Map_data extends Component{
             kakao.maps.load(()=>{
                 let el = document.getElementById('MyMap');
                 this.setState({map:new kakao.maps.Map(el,{
-                    center: new kakao.maps.LatLng(37.58000, 126.998165),
+                    center: new kakao.maps.LatLng(37.600, 126.955),
                     level:2
                 })})
             })

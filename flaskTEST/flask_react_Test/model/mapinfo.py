@@ -14,7 +14,7 @@ class mapinfo():
     def get():
         mysql_db = conn_mysqldb()
         db_cursor = mysql_db.cursor()
-        sql = "SELECT id,name,latitude,longitude FROM building"
+        sql = "SELECT id,name,latitude,longitude,detail_addr FROM building"
         db_cursor.execute(sql)
         datas = db_cursor.fetchall()
         db_cursor.close()

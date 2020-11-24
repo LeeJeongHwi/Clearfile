@@ -12,14 +12,10 @@ class meausreInfo():
         mysql_db = conn_mysqldb()
         db_cursor = mysql_db.cursor()
         sql = """
-        select lTBL.id, lTBL.title, mTBL.hour, mTBL.1hour_use, lTBL.type
-        from
-        (select id, date, HOUR(time) AS 'hour', round(sum(measure_power),2) as '1hour_use',
-         count(measure_power) as count_Measure from measureTBL GROUP BY DATE(date), 
-        Hour(date_sub(time, interval 15 minute)) having count_Measure>=4) as mTBL
-        natural join 
-        (select id,title,type from locationTBL) as lTBL
-        where lTBL.id = "%s" order by mTBL.hour;
+        select building.id,building.name,building.detail_addr, building.code, measure_power.date, hour(measure_power.time) AS hour, measure_power.measure_power
+        from measure_power INNER JOIN building 
+        ON (measure_power.id = building.id) 
+        WHERE measure_power.id = %s and measure_power.date = "2017-01-06";
         """%(id)
         db_cursor.execute(sql)
         datas = db_cursor.fetchall()
