@@ -373,7 +373,8 @@ try {
 
 다른 use Cases (=기능) 들도 `Preview` 방식과 비슷하게 동작한다.
 
-
+1. 구성요소 설정
+2. 바인딩
 
 ```kotlin
 private fun takePhoto() {
@@ -407,3 +408,108 @@ private fun takePhoto() {
 }
 ```
 
+```kotlin
+val imageCapture = imageCapture ?: return
+```
+
+* Class 에 선언된 `imageCapture` 가 null이라면 아직 set up이 되어있지 않다는 뜻이므로 `return` 한다.
+
+```kotlin
+val photoFile = File(
+   outputDirectory,
+   SimpleDateFormat(FILENAME_FORMAT, Locale.US
+   ).format(System.currentTimeMillis()) + ".jpg")
+```
+
+* `time stamp` 을 file name에 더해서 고유한 파일이름을 가지게 한다.
+
+```kotlin
+val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+```
+
+* `OutputFileOptions` 객체를 생성한다.
+  * 이 객체는 원하는 출력방식에 대한 정보를 저장하고 위에 만든 PhotoFile에 출력을 저장하려는 경우 사진 파일 을 추가
+
+```kotlin
+imageCapture.takePicture(
+   outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {} 
+)
+```
+
+* `takePicture()` 함수에 `outputOptions`와 `Executor` 와 이미지 저장될 때 실행되는 콜백함수를 넘긴다.
+
+```kotlin
+override fun onError(exc: ImageCaptureException) {
+   Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
+}
+```
+
+* 이미지 캡쳐 실패 혹은 캡쳐파일을 저장하는 것이 실패하면 error
+
+```kotlin
+override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+   val savedUri = Uri.fromFile(photoFile)
+   val msg = "Photo capture succeeded: $savedUri"
+   Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+   Log.d(TAG, msg)
+}
+```
+
+* 캡쳐가 성공하면 전에 내가 만들어두었던 파일에 사진을 저장한다. 그리고 성공했다고`Toast`로 알린다.
+* 마지막으로 성공로그 출력
+
+```kotlin
+cameraProvider.bindToLifecycle(
+   this, cameraSelector, preview, imageCapture)
+```
+
+* `startCamera()` 함수에서 바인딩을 업데이트 한다.
+
+
+
+#### Image Analysis use Case (Luminosity)
+
+* 평균 광도를 분석하는 기능을 만든다.
+
+```kotling
+private class LuminosityAnalyzer(private val listener: LumaListener) : ImageAnalysis.Analyzer {
+
+   private fun ByteBuffer.toByteArray(): ByteArray {
+       rewind()    // Rewind the buffer to zero
+       val data = ByteArray(remaining())
+       get(data)   // Copy the buffer into a byte array
+       return data // Return the byte array
+   }
+
+   override fun analyze(image: ImageProxy) {
+
+       val buffer = image.planes[0].buffer
+       val data = buffer.toByteArray()
+       val pixels = data.map { it.toInt() and 0xFF }
+       val luma = pixels.average()
+
+       listener(luma)
+
+       image.close()
+   }
+}
+```
+
+* inner 클래스로 `LuminosityAnalyzer` 클래스를 만들었다. 
+* `rewind()` : 버퍼를 0으로 만든다.
+* data
+
+```kotlin
+val imageAnalyzer = ImageAnalysis.Builder()
+   .build()
+   .also {
+       it.setAnalyzer(cameraExecutor, LuminosityAnalyzer { luma ->
+           Log.d(TAG, "Average luminosity: $luma")
+       })
+   }
+cameraProvider.bindToLifecycle(
+   this, cameraSelector, preview, imageCapture, imageAnalyzer)
+```
+
+* `startCamera()` 함수에 객체를 만들고, 바인딩 하기 전에 Build를 해준다.
+* 그리고 위에서 했던 Capture use Case 와 같이 바인딩해준다.
