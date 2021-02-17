@@ -1,7 +1,13 @@
-# Study-Repo
+# Clearfile Repo
 
-### :file_folder: 폴더구성
+### 공부한 것들을 정리해놓는 Repo
 
-* repo/flaskTEST : 플라스크 공부 관련 내용
-* repo/LinuxSERVER/Docker : 도커 공부 관련 내용
-* repo/React : React 관련 정리 및 KaKao Map API 사용
+
+
+##### 정리 중인 것
+
+* Android
+* Flask
+* Git
+* Linux (Ubuntu, Docker)ㄴ
+* React
